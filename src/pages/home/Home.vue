@@ -10,7 +10,7 @@
           Фармацевту
         </span>
       </h1>
-      <router-link to="/game" class="home__button" tag="button">
+      <router-link :to="{ name: 'game' }" class="home__button" tag="button">
         Начать
       </router-link>
     </div>
@@ -28,7 +28,7 @@ export default {
   .home {
     position: relative;
     height: 100%;
-    background-image: url(../../images/background-image.jpg);
+    background-image: url(../../assets/images/backgrounds/main-background.jpg);
     background-size: cover;
     background-position: center;
 
@@ -42,7 +42,7 @@ export default {
       height: 100%;
       max-width: 860px;
       max-height: 830px;
-      background-image: url(../../images/ellipse.png);
+      background-image: url(../../assets/images/backgrounds/ellipse-background.png);
       background-position: center;
     }
 
