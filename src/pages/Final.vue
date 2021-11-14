@@ -114,6 +114,7 @@ export default {
       align-items: center;
       width: 70px;
       height: 70px;
+      cursor: pointer;
       border-radius: 50%;
       border-color: transparent;
       background: linear-gradient(90deg, rgba(45,133,80,1) 0%, rgba(94,110,194,1) 100%);
