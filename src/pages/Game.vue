@@ -238,6 +238,7 @@
       height: 100%;
       flex-grow: 1;
       display: flex;
+      overflow: hidden;
       flex-direction: column;
 
       &-card {
