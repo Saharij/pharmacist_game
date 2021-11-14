@@ -3,6 +3,7 @@
     <img
       :src="user.img_url"
       :alt="`Person ${user.id}`"
+      draggable="false"
       class="card__image"
     >
     <div class="card__body">
@@ -32,7 +33,7 @@ export default {
   .card {
     width: 540px;
     height: 590px;
-    background-color: #fff;
+    background-color: $white;
     border-radius: 40px;
     box-shadow: 0px 0px 40px rgba(127, 127, 127, 0.4);
 

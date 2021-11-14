@@ -3,7 +3,7 @@
     <div class="home__wrapper">
       <div class="home__info-block">
         <div class="home__info-text">
-          <p class="home__subhead">
+          <p class="home__prehead">
             Добро пожаловать в игру
           </p>
           <h1 class="home__title">
@@ -13,15 +13,14 @@
             </span>
           </h1>
         </div>
-        <div class="home__button">
-          <router-link
-            :to="{ name: 'game' }"
-            tag="button"
-            class="btn home__button-start"
-          >
-            Начать
-          </router-link>
-        </div>
+
+        <router-link
+          :to="{ name: 'game' }"
+          tag="button"
+          class="btn home__start-btn"
+        >
+          Начать
+        </router-link>
       </div>
     </div>
   </div>
@@ -35,33 +34,36 @@ export default {
 </script>
 
 <style lang="scss">
-  $indent-left: 1px;
-
   .home {
     position: relative;
     height: 100%;
-    background-image: url(../../assets/images/backgrounds/main-background.jpg);
+    background-image: url(../assets/images/backgrounds/main-background.jpg);
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
 
     &__wrapper {
-      position: absolute;
       display: flex;
-      justify-content: center;
       align-items: center;
-      left: 7.6%;
+      justify-content: center;
       width: 100%;
-      height: 100%;
       max-width: 860px;
+      height: 100%;
       max-height: 830px;
-      background-image: url(../../assets/images/backgrounds/ellipse-background.png);
+      background-image: url(../assets/images/backgrounds/ellipse-background.png);
+      background-size: cover;
       background-position: center;
+      background-repeat: no-repeat;
+      @media (min-width: 992px) {
+        margin-left: 7.6%;
+      }
     }
 
     &__info-block {
       display: flex;
       flex-direction: column;
-      margin-top: 77px;
+      align-items: center;
+      margin-top: 76px;
       max-width: 580px;
     }
 
@@ -69,45 +71,35 @@ export default {
       padding-left: 40px;
     }
 
-    &__subhead {
-      color: #fff;
+    &__prehead {
+      margin-bottom: 28px;
+      color: $white;
       font-size: 35px;
       font-weight: 200;
       line-height: 41px;
       letter-spacing: 0.2px;
-      margin-bottom: 29px;
       text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     }
 
     &__title {
-      color: white;
+      margin-bottom: 110px;
+      color: $white;
       font-size: 60px;
       font-weight: 700;
-      letter-spacing: 0.2px;
 
       &--uppercase {
+        letter-spacing: 5px;
         text-transform: uppercase;
       }
     }
 
-    &__button {
-      margin: 110px auto 0;
-
-      &-start {
-        font-size: 36px;
-        font-weight: 700;
-        text-align: center;
-        color: #8e9ad5;
-        width: 391px;
-        height: 90px;
-        border-radius: 100px;
-        border-color: transparent;
-        font-family: 'Montserrat', sans-serif;
-
-        &:hover {
-          cursor: pointer;
-        }
-      }
+    &__start-btn {
+      width: 100%;
+      max-width: 391px;
+      height: 90px;
+      color: #8e9ad5;
+      font-size: 36px;
+      font-family: 'Montserrat', sans-serif;
     }
   }
 </style>

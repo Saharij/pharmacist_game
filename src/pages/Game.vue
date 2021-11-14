@@ -1,72 +1,74 @@
 <template>
   <div class="game">
-    <div class="game__aside">
-      <router-link
-        :to="{ name: 'home' }"
-        tag="button"
-        class="game__aside-link game__aside-link-home"
-      >
-        <img
-          src="@/assets/images/icons/home-icon-purple.png"
-          alt="Home"
-          class="game__aside-link-home-icon"
+    <div class="game__aside aside">
+      <header class="aside__header">
+        <router-link
+          :to="{ name: 'home' }"
+          tag="button"
+          class="aside__header-link"
         >
-      </router-link>
-      <button
-        class="game__aside-link game__aside-link-retry"
-        @click="resetGame"
-      >
-        <img
-          src="@/assets/images/icons/retry-icon.png"
-          alt="Retry"
-          class="game__aside-link-retry-icon"
+          <img
+            src="@/assets/images/icons/home-icon-purple.png"
+            alt="Home"
+            class="aside__header-icon-home"
+          >
+        </router-link>
+        <button
+          class="aside__header-link"
+          @click="resetGame"
         >
-      </button>
-      <div class="game__aside-params">
-        <p class="game__aside-params-text">Параметри:</p>
-        <div class="game__aside-icons">
-          <div class="game__aside-icons-box">
+          <img
+            src="@/assets/images/icons/retry-icon.png"
+            alt="Retry"
+            class="aside__header-icon-retry"
+          >
+        </button>
+      </header>
+      <div class="aside__params">
+        <p class="aside__params-text">Параметри:</p>
+        <div class="aside__icons">
+          <div class="aside__icons-box">
             <img
               src="@/assets/images/icons/sad-icon.png"
               alt="Sad icon"
-              class="game__aside-icons-item"
+              class="aside__icons-item"
             >
-            <span class="game__aside-params-number">
+            <span class="aside__params-number">
               {{counter.sad}}
             </span>
           </div>
-          <div class="game__aside-icons-box">
+          <div class="aside__icons-box">
             <img
               src="@/assets/images/icons/happy-icon.png"
               alt="Happy icon"
-              class="game__aside-icons-item"
+              class="aside__icons-item"
             >
-            <span class="game__aside-params-number">
+            <span class="aside__params-number">
               {{counter.happy}}
             </span>
           </div>
-          <div class="game__aside-icons-box">
+          <div class="aside__icons-box">
             <img
               src="@/assets/images/icons/heart-icon.png"
               alt="Heart icon"
-              class="game__aside-icons-item"
+              class="aside__icons-item"
             >
-            <span class="game__aside-params-number">
+            <span class="aside__params-number">
               {{counter.heart}}
             </span>
           </div>
         </div>
       </div>
-      <div class="game__aside-footer">
-        <p class="game__aside-turns-counter">
+      <div class="aside__footer">
+        <p class="aside__turns-counter">
           Осталось в очереди:
         </p>
         <p>
-          <span class="game__aside-turns-step">
+          <span class="aside__turns-step">
             {{step}}
           </span>
           /
-          <span class="game__aside-turns-length">
+          <span class="aside__turns-length">
             {{users.length}}
           </span>
         </p>
@@ -89,7 +91,7 @@
           v-hammer:swipe="handleSwipe"
         />
       </div>
-      <div class="game__main-buttons">
+      <div v-if="!loading && !error" class="game__main-buttons">
         <button
           @click="handleCounterChange('sad')"
           class="btn game__main-buttons-item game__main-buttons-lilac"
@@ -114,10 +116,10 @@
 </template>
 
 <script>
-  import { callApi } from '../../api';
-  import Card from '../../components/Card.vue';
-  import Loading from '../../components/Loading.vue';
-  import Error from '../../components/Error.vue';
+  import Card from '../components/Card.vue';
+  import Error from '../components/Error.vue';
+  import Loading from '../components/Loading.vue';
+  import { callApi } from '../api';
 
   export default {
     name: 'Game',
@@ -218,121 +220,15 @@
     &__aside {
       position: relative;
       height: 100%;
-      width: 470px;
-      margin-right: unset;
-      background-image: url(../../assets/images/backgrounds/aside-background.png);
-      z-index: 1;
-
-      &-link {
-        position: absolute;
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        border-color: transparent;
-        background-color: white;
-
-        &-home {
-          top: 70px;
-          left: 50px;
-
-          &-icon {
-            width: 32px;
-            height: 35px;
-          }
-        }
-
-        &-retry {
-          top: 70px;
-          left: 158px;
-
-          &-icon {
-            width: 42px;
-            height: 42px;
-            transform: scale(5);
-          }
-        }
-      }
-
-      &-params {
-        position: absolute;
-        top: 430px;
-        left: 40px;
-
-        &-text {
-          font-size: 36px;
-          color: #fff;
-          font-weight: 600;
-          line-height: 44px;
-        }
-
-        &-number {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 100px;
-          height: 80px;
-          color: #424242;
-          font-size: 48px;
-          font-weight: 700;
-          line-height: 59px;
-        }
-      }
-
-      &-icons {
-        display: flex;
-        flex-wrap: wrap;
-        max-width: 420px;
-        margin-top: 30px;
-
-        &-box {
-          position: relative;
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-          height: 80px;
-          width: 190px;
-          border-radius: 40px;
-          margin-right: 20px;
-          margin-bottom: 40px;
-          background-color: #fff;
-
-          &:last-child {
-            margin-right: auto;
-            margin-left: auto;
-          }
-        }
-
-        &-item {
-          width: 60px;
-          height: 60px;
-          background-size: cover;
-        }
-      }
-
-      &-footer {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        height: 134px;
-        font-size: 36px;
-        color: #fff;
-        background-color: #ffffff15;
-      }
-
-      &-turns-counter {
-        font-weight: 200;
-      }
-
-      &-turns-step {
-        font-weight: 700;
-      }
-
-      &-turns-length {
-        font-weight: 300;
+      width: 100%;
+      max-width: 380px;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      background-image: url(../assets/images/backgrounds/aside-background.png);
+      z-index: 10;
+      @media (min-width: 1200px) {
+        max-width: 470px;
       }
     }
 
@@ -342,8 +238,6 @@
       flex-grow: 1;
       display: flex;
       flex-direction: column;
-
-
 
       &-card {
         flex-grow: 1;
@@ -357,18 +251,18 @@
         padding: 20px 20px 64px;
 
         &-item {
-          width: 280px;
+          width: 100%;
+          max-width: 280px;
           height: 90px;
-          border-color: transparent;
           font-size: 28px;
-          font-weight: 700;
-          cursor: pointer;
-          margin-right: 40px;
-          border-radius: 100px;
 
-          &:last-child {
-            margin-right: unset;
+          &:not(:last-child) {
+            margin-right: 10px;
+            @media (min-width: 1200px) {
+              margin-right: 40px;
+            }
           }
+
         }
 
         &-lilac {
@@ -386,16 +280,134 @@
     }
   }
 
-  .swipe-left {
-    animation: slide-left-out 750ms ease-in-out 1 forwards;
+  .aside {
+    &__header {
+      padding: 70px 50px 100px;
+      display: flex;
+
+      &-link {
+        width: 70px;
+        height: 70px;
+        cursor: pointer;
+        border-radius: 50%;
+        border: none;
+        background-color: $white;
+        &:not(:last-child) {
+          margin-right: 38px;
+        }
+      }
+
+      &-icon-home {
+        width: 36px;
+        height: 32px;
+      }
+
+      &-icon-retry {
+        width: 48px;
+        height: 38px;
+      }
+    }
+
+
+    &__params {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 40px;
+      padding-right: 3px;
+
+      &-text {
+        color: $white;
+        font-size: 36px;
+        font-weight: 600;
+        line-height: 44px;
+      }
+
+      &-number {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100px;
+        height: 100%;
+        color: #424242;
+        font-size: 48px;
+        font-weight: 700;
+        line-height: 59px;
+      }
+    }
+
+    &__icons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+      margin-top: 30px;
+      margin-left: -10px;
+      margin-right: -10px;
+
+      &-box {
+        position: relative;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 80px;
+        width: 190px;
+        margin-right: 10px;
+        margin-left: 10px;
+        border-radius: 40px;
+        background-color: $white;
+        &:not(:last-child) {
+          margin-bottom: 40px;
+        }
+      }
+
+      &-item {
+        width: 60px;
+        height: 60px;
+        background-size: cover;
+      }
+    }
+
+    &__footer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 134px;
+      font-size: 36px;
+      color: $white;
+      background-color: #ffffff15;
+    }
+
+    &__turns {
+      &-counter {
+        font-weight: 200;
+      }
+
+      &-step {
+        font-weight: 700;
+      }
+
+      &-length {
+        font-weight: 300;
+      }
+    }
   }
 
-  .swipe-right {
-    animation: slide-right-out 750ms ease-in-out 1 forwards;
-  }
+  .swipe {
+    &-left {
+      animation: slide-left-out 750ms ease-in-out 1 forwards;
+    }
 
-  .swipe-top {
-    animation: slide-top-out 750ms ease-in-out 1 forwards;
+    &-right {
+      animation: slide-right-out 750ms ease-in-out 1 forwards;
+    }
+
+    &-top {
+      animation: slide-top-out 750ms ease-in-out 1 forwards;
+    }
   }
 
   @keyframes slide-left-out {
