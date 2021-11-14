@@ -92,7 +92,7 @@ export default {
       const { sad, happy, heart } = this.counter;
       const total = sad + happy + heart;
 
-      return (value * 100) / total;
+      return Math.round((value * 100) / total);
     }
   },
 }
@@ -143,6 +143,7 @@ export default {
       &-text {
         align-self: center;
         flex-grow: 1;
+        max-width: 600px;
         @media (min-width: 1200px) {
           margin-left: 9%;
         }
@@ -155,7 +156,7 @@ export default {
     }
 
     &__percent-item {
-      color: #424242;
+      color: $teva-dark-gray;
       text-align: center;
     }
 
@@ -185,7 +186,7 @@ export default {
 
       &-title {
         margin: unset;
-        color: #8e9ad5;
+        color: $not-so-dark;
         font-size: 40px;
         font-weight: 600;
         line-height: 44px;
@@ -198,7 +199,7 @@ export default {
       &-subtitle {
         max-width: 550px;
         margin-top: 20px;
-        color: #424242;
+        color: $teva-dark-gray;
         font-weight: 300;
         font-size: 24px;
         line-height: 29px;
@@ -215,6 +216,7 @@ export default {
       height: 60px;
       font-size: 24px;
       letter-spacing: 0.6px;
+      white-space: nowrap;
       background: linear-gradient(90deg, rgba(217,217,217,1) 0%, rgba(161,161,161,1) 100%);
     }
   }

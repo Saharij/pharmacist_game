@@ -61,7 +61,8 @@
       </div>
       <div class="aside__footer">
         <p class="aside__turns-counter">
-          Осталось в очереди:
+          <span class="aside__turns-counter--desktop">Осталось в очереди:</span>
+          <span class="aside__turns-counter--mobile">В очереди:</span>
         </p>
         <p>
           <span class="aside__turns-step">
@@ -221,7 +222,7 @@
       position: relative;
       height: 100%;
       width: 100%;
-      max-width: 380px;
+      max-width: 284px;
       display: flex;
       flex-direction: column;
       flex-shrink: 0;
@@ -248,6 +249,7 @@
 
       &-buttons {
         display: flex;
+        justify-content: center;
         padding: 20px 20px 64px;
 
         &-item {
@@ -288,6 +290,9 @@
       &-link {
         width: 70px;
         height: 70px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
         cursor: pointer;
         border-radius: 50%;
         border: none;
@@ -330,7 +335,7 @@
         align-items: center;
         width: 100px;
         height: 100%;
-        color: #424242;
+        color: $teva-dark-gray;
         font-size: 48px;
         font-weight: 700;
         line-height: 59px;
@@ -357,6 +362,7 @@
         margin-left: 10px;
         border-radius: 40px;
         background-color: $white;
+        box-shadow: 0px 0px 50px rgba(131, 42, 64, 0.4);
         &:not(:last-child) {
           margin-bottom: 40px;
         }
@@ -384,6 +390,18 @@
     &__turns {
       &-counter {
         font-weight: 200;
+        &--desktop {
+          display: none;
+          @media (min-width: 1200px) {
+            display: block;
+          }
+        }
+        &--mobile {
+          display: block;
+          @media (min-width: 1200px) {
+            display: none;
+          }
+        }
       }
 
       &-step {

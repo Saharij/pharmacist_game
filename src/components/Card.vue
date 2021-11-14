@@ -50,11 +50,11 @@ export default {
         font-size: 32px;
         font-weight: 700;
         line-height: 39.2px;
-        color: #8e9ad5;
+        color: $not-so-dark;
       }
 
       &-description {
-        color: #424242;
+        color: $teva-dark-gray;
         font-size: 24px;
         font-weight: 200;
         line-height: 27px;

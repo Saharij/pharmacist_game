@@ -97,9 +97,10 @@ export default {
       width: 100%;
       max-width: 391px;
       height: 90px;
-      color: #8e9ad5;
+      color: $not-so-dark;
       font-size: 36px;
       font-family: 'Montserrat', sans-serif;
+      background-color: $white;
     }
   }
 </style>
