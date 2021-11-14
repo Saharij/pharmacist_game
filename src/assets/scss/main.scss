@@ -1,3 +1,21 @@
+@mixin font($fname, $fstyle, $fweight, $furl) {
+  @font-face {
+    font-family: $fname;
+    font-style: $fstyle;
+    font-weight: $fweight;
+    src: url($furl) format('woff');
+  }
+}
+
+@include font('Avenir', normal, 100, '~@/assets/fonts/Avenir/AvenirUltraLight.woff');
+@include font('Avenir', normal, 200, '~@/assets/fonts/Avenir/AvenirThin.woff');
+@include font('Avenir', normal, 300, '~@/assets/fonts/Avenir/AvenirLight.woff');
+@include font('Avenir', normal, 400, '~@/assets/fonts/Avenir/AvenirRegular.woff');
+@include font('Avenir', normal, 500, '~@/assets/fonts/Avenir/AvenirMedium.woff');
+@include font('Avenir', normal, 600, '~@/assets/fonts/Avenir/AvenirDemi.woff');
+@include font('Avenir', normal, 700, '~@/assets/fonts/Avenir/AvenirBold.woff');
+@include font('Avenir', normal, 900, '~@/assets/fonts/Avenir/AvenirHeavy.woff');
+
 html {
   height: 100%;
 }
@@ -5,6 +23,7 @@ html {
 body {
   height: 100%;
   margin: unset;
+  font-family: 'Avenir', sans-serif;
 }
 
 #app {
@@ -13,4 +32,18 @@ body {
 
 p {
   margin: unset;
+}
+
+h1 {
+  margin: unset;
+}
+
+.btn {
+  font-weight: 400;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  border-color: transparent;
+  border-radius: 100px;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
