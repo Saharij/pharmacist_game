@@ -1,5 +1,7 @@
 # pharmacist_game
 
+[DEMO LINK](saharij.github.io/pharmacist_game/)
+
 Задача:
 
 1) Создать web-приложени на Vue;
