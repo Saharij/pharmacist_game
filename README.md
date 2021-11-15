@@ -1,6 +1,6 @@
 # pharmacist_game
 
-[DEMO LINK](saharij.github.io/pharmacist_game/)
+[DEMO LINK](https://Saharij.github.io/pharmacist_game/)
 
 Задача:
 
